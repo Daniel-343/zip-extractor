@@ -11,7 +11,7 @@ class MainView(tk.Frame):
         self.sql_controller = SqlController()
         p1 = UserList(self, self.sql_controller)
         p2 = FileExtractorApp(self.sql_controller)
-        p3 = AddUser(self, self.sql_controller)
+        p3 = AddUser(self, self.sql_controller, p1)
 
         button_frame = tk.Frame(self)
         container = tk.Frame(self)
