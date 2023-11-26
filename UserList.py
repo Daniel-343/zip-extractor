@@ -10,14 +10,6 @@ class UserList(tk.Frame):
         self.controller = controller
         self.SqlController = sql_controller
 
-        # Database connection parameters
-        self.db_params = {
-            'host': 'localhost',
-            'database': 'zipdb',
-            'user': 'daniel',
-            'password': '1324'
-        }
-
         # Create a treeview to display user data
         self.tree = ttk.Treeview(self, columns=('Name', 'Password'), show='headings')
         self.tree.heading('Name', text='Name')
@@ -46,19 +38,12 @@ class UserList(tk.Frame):
             self.tree.delete(item)
 
         try:
-            connection = psycopg2.connect(**self.db_params)
 
-            cursor = connection.cursor()
-
-            cursor.execute("SELECT name, password FROM \"user\";")
-
-            rows = cursor.fetchall()
+            users = self.SqlController.get_users()
+            rows = [{'name': user[0], 'password': user[1]} for user in users]
 
             for row in rows:
-                self.tree.insert('', 'end', values=row)
-
-            cursor.close()
-            connection.close()
+                self.tree.insert('', 'end', values=(row['name'], row['password']))
 
         except psycopg2.Error as e:
             tk.messagebox.showerror("Error", f"Database error: {e}")

@@ -20,7 +20,7 @@ class SqlController:
 
         rows = self.cursor.fetchall()
 
-        return [{'name': row[0], 'password': row[1]} for row in rows]
+        return rows
 
     def close_connection(self):
         self.cursor.close()
