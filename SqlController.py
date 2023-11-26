@@ -27,7 +27,7 @@ class SqlController:
         self.connection.close()
 
     def add_user(self, name, password):
-        self.cursor.execute("INSERT INTO \"user\" (name, password, connected, customer_number, type) VALUES (%s, %s);", (name, password))
+        self.cursor.execute("INSERT INTO \"user\" (name, password) VALUES (%s, %s);", (name, password))
 
         self.connection.commit()
 
