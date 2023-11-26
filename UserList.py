@@ -23,9 +23,6 @@ class UserList(tk.Frame):
         self.scrollbar.grid(row=0, column=1, sticky='nsew')
         self.tree.configure(yscrollcommand=self.scrollbar.set)
 
-        refresh_button = tk.Button(self, text="Refresh", command=self.fetch_users)
-        refresh_button.grid(row=2, column=0, columnspan=2, pady=10, sticky=tk.W + tk.E)
-
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=0)
 
