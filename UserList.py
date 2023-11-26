@@ -10,8 +10,8 @@ class UserList(tk.Frame):
         self.controller = controller
         self.SqlController = sql_controller
 
-        # Create a treeview to display user data
-        self.tree = ttk.Treeview(self, columns=('Name', 'Password', 'Company', 'Customer code', 'Type'), show='headings')
+        self.tree = ttk.Treeview(self, columns=('Name', 'Password', 'Company', 'Customer code', 'Type'),
+                                 show='headings')
         self.tree.heading('Name', text='Name')
         self.tree.heading('Password', text='Password')
         self.tree.heading('Company', text='Company')
@@ -43,10 +43,13 @@ class UserList(tk.Frame):
         try:
 
             users = self.SqlController.get_users()
-            rows = [{'name': user[0], 'password': user[1], 'company': user[2], 'customer_code': user[3], 'type': user[4]} for user in users]
+            rows = [
+                {'name': user[0], 'password': user[1], 'company': user[2], 'customer_code': user[3], 'type': user[4]}
+                for user in users]
 
             for row in rows:
-                self.tree.insert('', 'end', values=(row['name'], row['password'], row['company'], row['customer_code'], row['type']))
+                self.tree.insert('', 'end', values=(
+                row['name'], row['password'], row['company'], row['customer_code'], row['type']))
 
         except psycopg2.Error as e:
             tk.messagebox.showerror("Error", f"Database error: {e}")
