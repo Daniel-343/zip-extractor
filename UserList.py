@@ -71,8 +71,6 @@ class UserList(tk.Frame):
 
         try:
             self.SqlController.delete_user(user_name)
-
-            tk.messagebox.showinfo("Info", f"company '{user_name}' deleted successfully.")
             self.fetch_users()
 
         except psycopg2.Error as e:
