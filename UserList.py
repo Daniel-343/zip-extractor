@@ -11,9 +11,12 @@ class UserList(tk.Frame):
         self.SqlController = sql_controller
 
         # Create a treeview to display user data
-        self.tree = ttk.Treeview(self, columns=('Name', 'Password'), show='headings')
+        self.tree = ttk.Treeview(self, columns=('Name', 'Password', 'Company', 'Customer code', 'Type'), show='headings')
         self.tree.heading('Name', text='Name')
         self.tree.heading('Password', text='Password')
+        self.tree.heading('Company', text='Company')
+        self.tree.heading('Customer code', text='Customer code')
+        self.tree.heading('Type', text='Type')
         self.tree.grid(row=0, column=0, columnspan=2, sticky=tk.W + tk.E)
 
         self.scrollbar = ttk.Scrollbar(self, orient="vertical", command=self.tree.yview)
@@ -40,10 +43,10 @@ class UserList(tk.Frame):
         try:
 
             users = self.SqlController.get_users()
-            rows = [{'name': user[0], 'password': user[1]} for user in users]
+            rows = [{'name': user[0], 'password': user[1], 'company': user[2], 'customer_code': user[3], 'type': user[4]} for user in users]
 
             for row in rows:
-                self.tree.insert('', 'end', values=(row['name'], row['password']))
+                self.tree.insert('', 'end', values=(row['name'], row['password'], row['company'], row['customer_code'], row['type']))
 
         except psycopg2.Error as e:
             tk.messagebox.showerror("Error", f"Database error: {e}")

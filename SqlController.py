@@ -16,7 +16,7 @@ class SqlController:
         self.cursor = self.connection.cursor()
 
     def get_users(self):
-        self.cursor.execute("SELECT name, password FROM \"user\";")
+        self.cursor.execute("SELECT name, password, company, customer_code, type FROM \"user\";")
 
         rows = self.cursor.fetchall()
 
