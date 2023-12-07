@@ -1,4 +1,5 @@
 import psycopg2
+import datetime
 
 
 class SqlController:
@@ -16,7 +17,7 @@ class SqlController:
         self.cursor = self.connection.cursor()
 
     def get_users(self):
-        self.cursor.execute("SELECT name, password, company, customer_code, type FROM \"user\";")
+        self.cursor.execute("SELECT name, password, company, customer_code, type, created_at FROM \"user\" ORDER BY name;")
 
         rows = self.cursor.fetchall()
 
@@ -28,8 +29,8 @@ class SqlController:
 
     def add_user(self, name, password, company, customer_code, entry_type):
         self.cursor.execute(
-            "INSERT INTO \"user\" (name, password, company, customer_code, type) VALUES (%s, %s, %s, %s, %s);",
-            (name, password, company, customer_code, entry_type))
+            "INSERT INTO \"user\" (name, password, company, customer_code, type, created_at) VALUES (%s, %s, %s, %s, %s, %s);",
+            (name, password, company, customer_code, entry_type, datetime.datetime.now()))
 
         self.connection.commit()
 

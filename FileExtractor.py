@@ -54,6 +54,13 @@ class FileExtractorApp(tk.Frame):
 
     def find_password(self):
         users = self.SqlController.get_users()
-        for entry in users:
+        rows = [
+            {'name': user[0], 'password': user[1], 'company': user[2], 'customer_code': user[3], 'type': user[4]}
+            for user in users]
+        extraction_failed = True
+        for entry in rows:
             if self.extract_file(entry['password']):
+                extraction_failed = False
                 break
+        if extraction_failed:
+            show_popup("Could not find password in the database")

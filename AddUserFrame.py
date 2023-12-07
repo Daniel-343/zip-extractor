@@ -29,6 +29,22 @@ class AddUser(tk.Frame):
         self.company_entry.grid(row=2, column=1, padx=10, pady=5, sticky=tk.W)
         self.customer_code_entry.grid(row=3, column=1, padx=10, pady=5, sticky=tk.W)
 
+        self.name_entry1 = tk.Entry(self, width=30)
+        self.password_entry1 = tk.Entry(self, width=30)
+        self.company_entry1 = tk.Entry(self, width=30)
+        self.customer_code_entry1 = tk.Entry(self, width=30)
+
+        tk.Label(self, text="Name*:").grid(row=0, column=2, padx=10, pady=5, sticky=tk.W)
+        tk.Label(self, text="Password*:").grid(row=1, column=2, padx=10, pady=5, sticky=tk.W)
+        tk.Label(self, text="Company:").grid(row=2, column=2, padx=10, pady=5, sticky=tk.W)
+        tk.Label(self, text="Customer code*:").grid(row=3, column=2, padx=10, pady=5, sticky=tk.W)
+        tk.Label(self, text="Type*:").grid(row=4, column=2, padx=10, pady=5, sticky=tk.W)
+
+        self.name_entry1.grid(row=0, column=3, padx=10, pady=5, sticky=tk.W)
+        self.password_entry1.grid(row=1, column=3, padx=10, pady=5, sticky=tk.W)
+        self.company_entry1.grid(row=2, column=3, padx=10, pady=5, sticky=tk.W)
+        self.customer_code_entry1.grid(row=3, column=3, padx=10, pady=5, sticky=tk.W)
+
         company_button = tk.Checkbutton(self, text="Company", command=lambda: self.toggle_type(0),
                                         variable=self.button_check_0)
         company_button.grid(row=4, column=0, columnspan=2, padx=(0, 40), pady=10)

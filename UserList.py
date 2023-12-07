@@ -10,13 +10,14 @@ class UserList(tk.Frame):
         self.controller = controller
         self.SqlController = sql_controller
 
-        self.tree = ttk.Treeview(self, columns=('Name', 'Password', 'Company', 'Customer code', 'Type'),
+        self.tree = ttk.Treeview(self, columns=('Name', 'Password', 'Company', 'Customer code', 'Type', 'Created at'),
                                  show='headings')
         self.tree.heading('Name', text='Name')
         self.tree.heading('Password', text='Password')
         self.tree.heading('Company', text='Company')
         self.tree.heading('Customer code', text='Customer code')
         self.tree.heading('Type', text='Type')
+        self.tree.heading('Created at', text='Created at')
         self.tree.grid(row=0, column=0, columnspan=2, sticky=tk.W + tk.E)
 
         self.scrollbar = ttk.Scrollbar(self, orient="vertical", command=self.tree.yview)
@@ -41,12 +42,12 @@ class UserList(tk.Frame):
 
             users = self.SqlController.get_users()
             rows = [
-                {'name': user[0], 'password': user[1], 'company': user[2], 'customer_code': user[3], 'type': user[4]}
+                {'name': user[0], 'password': user[1], 'company': user[2], 'customer_code': user[3], 'type': user[4], 'created_at': user[5]}
                 for user in users]
 
             for row in rows:
                 self.tree.insert('', 'end', values=(
-                row['name'], row['password'], row['company'], row['customer_code'], row['type']))
+                row['name'], row['password'], row['company'], row['customer_code'], row['type'], row['created_at']))
 
         except psycopg2.Error as e:
             tk.messagebox.showerror("Error", f"Database error: {e}")
