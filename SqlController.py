@@ -7,9 +7,9 @@ class SqlController:
     def __init__(self):
         self.db_params = {
             'host': 'localhost',
-            'database': 'zipdb',
-            'user': 'daniel',
-            'password': '1324'
+            'database': 'zipdb-docker',
+            'user': 'postgres',
+            'password': 'postgres'
         }
 
         self.connection = psycopg2.connect(**self.db_params)
