@@ -7,16 +7,13 @@ from dotenv import load_dotenv
 class SqlController:
 
     def __init__(self):
-        self.host = os.getenv("HOST")
-        self.database = os.getenv("DATABASE")
-        self.user = os.getenv("USER")
-        self.password = os.getenv("PASSWORD")
+        load_dotenv()
 
         self.db_params = {
-            'host': 'localhost',
-            'database': 'zipdb-docker',
-            'user': 'postgres',
-            'password': 'postgres'
+            'host': os.getenv("HOST"),
+            'database': os.getenv("POSTGRES_DB"),
+            'user': os.getenv("POSTGRES_USER"),
+            'password': os.getenv("POSTGRES_PASSWORD")
         }
 
         self.connection = psycopg2.connect(**self.db_params)
