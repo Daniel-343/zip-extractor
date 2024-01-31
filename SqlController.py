@@ -1,10 +1,17 @@
 import psycopg2
 import datetime
+import os
+from dotenv import load_dotenv
 
 
 class SqlController:
 
     def __init__(self):
+        self.host = os.getenv("HOST")
+        self.database = os.getenv("DATABASE")
+        self.user = os.getenv("USER")
+        self.password = os.getenv("PASSWORD")
+
         self.db_params = {
             'host': 'localhost',
             'database': 'zipdb-docker',
