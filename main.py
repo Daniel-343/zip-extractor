@@ -32,13 +32,16 @@ class MainView(tk.Frame):
 
         p1.show()
 
+    def run(self, root_display):
+        root_display.title("Zip Extractor")
+        width = root_display.winfo_screenwidth()
+        height = root_display.winfo_screenheight()
+        root_display.geometry("%dx%d" % (width, height))
+        self.pack(side="top", fill="both", expand=True)
+        root_display.mainloop()
+
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.title("Zip Extractor")
-    main = MainView(root)
-    width = root.winfo_screenwidth()
-    height = root.winfo_screenheight()
-    root.geometry("%dx%d" % (width, height))
-    main.pack(side="top", fill="both", expand=True)
-    root.mainloop()
+    app = MainView(root)
+    app.run(root)
