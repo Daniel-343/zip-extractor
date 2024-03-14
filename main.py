@@ -1,5 +1,6 @@
 import tkinter as tk
 from FileExtractor import FileExtractorApp
+from SettingsPage import SettingsPage
 from UserList import UserList
 from AddUserFrame import AddUser
 from SqlController import SqlController
@@ -12,6 +13,7 @@ class MainView(tk.Frame):
         p1 = UserList(self, self.sql_controller)
         p2 = FileExtractorApp(self.sql_controller)
         p3 = AddUser(self, self.sql_controller, p1)
+        p4 = SettingsPage()
 
         button_frame = tk.Frame(self)
         container = tk.Frame(self)
@@ -21,14 +23,17 @@ class MainView(tk.Frame):
         p1.place(in_=container, x=0, y=0, relwidth=1, relheight=1)
         p2.place(in_=container, x=0, y=0, relwidth=1, relheight=1)
         p3.place(in_=container, x=0, y=0, relwidth=1, relheight=1)
+        p4.place(in_=container, x=0, y=0, relwidth=1, relheight=1)
 
         b1 = tk.Button(button_frame, text="Database", command=p1.show)
         b2 = tk.Button(button_frame, text="Extract", command=p2.show)
         b3 = tk.Button(button_frame, text="Add New", command=p3.show)
+        b4 = tk.Button(button_frame, text="Settings", command=p4.show)
 
         b1.pack(side="left")
         b2.pack(side="left")
         b3.pack(side="left")
+        b4.pack(side="left")
 
         p1.show()
 

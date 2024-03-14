@@ -13,7 +13,8 @@ class SqlController:
             'host': os.getenv("HOST"),
             'database': os.getenv("POSTGRES_DB"),
             'user': os.getenv("POSTGRES_USER"),
-            'password': os.getenv("POSTGRES_PASSWORD")
+            'password': os.getenv("POSTGRES_PASSWORD"),
+            'port': os.getenv("PORT")
         }
 
         self.connection = psycopg2.connect(**self.db_params)

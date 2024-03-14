@@ -60,11 +60,11 @@ class AddUser(tk.Frame):
         self.lift()
 
     def add_user(self):
-        name = self.name_entry.get()
-        password = self.password_entry.get()
-        company = self.company_entry.get()
-        customer_number = self.customer_code_entry.get()
         entry_type = self.type_entry
+        name = self.name_entry.get() if entry_type == 'company' else self.name_entry1.get()
+        password = self.password_entry.get() if entry_type == 'company' else self.password_entry1.get()
+        company = self.company_entry.get() if entry_type == 'company' else self.company_entry1.get()
+        customer_number = self.customer_code_entry.get() if entry_type == 'company' else self.customer_code_entry1.get()
 
         if not name or not password or not customer_number or not entry_type:
             tk.messagebox.showinfo("Info", "Please enter all required fields")
@@ -90,13 +90,15 @@ class AddUser(tk.Frame):
             self.button_check_0.set(0)
             self.button_check_1.set(1)
 
-
     def clear_entries(self):
         self.name_entry.delete(0, tk.END)
         self.password_entry.delete(0, tk.END)
         self.company_entry.delete(0, tk.END)
         self.customer_code_entry.delete(0, tk.END)
+        self.name_entry1.delete(0, tk.END)
+        self.password_entry1.delete(0, tk.END)
+        self.company_entry1.delete(0, tk.END)
+        self.customer_code_entry1.delete(0, tk.END)
         self.type_entry = None
         self.button_check_0 = 0
         self.button_check_1 = 0
-
